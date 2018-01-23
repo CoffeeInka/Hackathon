@@ -15,6 +15,7 @@ public class PlayerPage {
     public static SelenideElement likeIcon = $("#like-icon");
     public static SelenideElement skipIcon = $("#kip-icon");
     public static SelenideElement artistTitle = $("#artist-title");
+    public static SelenideElement score = $("#score");
 
     public static void pressUp() {
         player.sendKeys(Keys.ARROW_UP);
