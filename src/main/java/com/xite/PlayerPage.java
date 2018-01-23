@@ -24,22 +24,40 @@ public class PlayerPage {
         player.sendKeys(Keys.ARROW_RIGHT);
     }
 
-    public static void launchMVP(){
+    public static void launchMVP() {
         open(url);
         prompting.shouldHave(text("Press Up to Like or Right to Skip"));
     }
 
-    public static void likeSong(){
+    public static void likeSong() {
         pressUp();
         likeIcon.should(appear);
         likeIcon.waitUntil(disappears, 3000);
-        artistTitle.shouldBe(visible);
+        artistTitle.waitUntil(visible, 3000);
     }
 
-    public static void skipSong(){
+    public static void likeSong(int times) {
+        for (int i = 0; i < times; i++) {
+            pressUp();
+            likeIcon.should(appear);
+            likeIcon.waitUntil(disappears, 3000);
+            artistTitle.waitUntil(visible, 3000);
+        }
+    }
+
+    public static void skipSong() {
         pressRight();
         skipIcon.should(appear);
         skipIcon.waitUntil(disappears, 3000);
-        artistTitle.shouldBe(visible);
+        artistTitle.waitUntil(visible, 3000);
+    }
+
+    public static void skipSong(int times) {
+        for (int i = 0; i < times; i++) {
+            pressRight();
+            skipIcon.should(appear);
+            skipIcon.waitUntil(disappears, 3000);
+            artistTitle.waitUntil(visible, 3000);
+        }
     }
 }
