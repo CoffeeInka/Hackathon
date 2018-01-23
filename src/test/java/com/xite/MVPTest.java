@@ -84,13 +84,13 @@ public class MVPTest {
 
     }
 
-    public static String url = "";
+    public static String url = "localhost:8808";
     public static SelenideElement player = $("#video");
-    public static SelenideElement userMessage;
-    public static SelenideElement prompting;
-    public static SelenideElement likeIcon;
-    public static SelenideElement skipIcon;
-    public static SelenideElement artistTitle;
+    public static SelenideElement userMessage = $("#user-message");
+    public static SelenideElement prompting = $("#prompting");
+    public static SelenideElement likeIcon = $("like-icon");
+    public static SelenideElement skipIcon = $("skip-icon");
+    public static SelenideElement artistTitle = $("#artist-title");
 
     private static void pressUp() {
         player.sendKeys(Keys.ARROW_UP);
