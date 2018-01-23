@@ -4,19 +4,19 @@ package com.xite;
 import com.codeborne.selenide.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.xite.PlayerPage.*;
 
 public class MVPTest {
 
     @Before
     public void setUp() {
-        Configuration.timeout = 10000;
-        Configuration.holdBrowserOpen = true;
-        Configuration.collectionsTimeout = 10000;
+        Configuration.timeout = 5000;
+        Configuration.collectionsTimeout = 5000;
+        Configuration.browser = "chrome";
+        Configuration.holdBrowserOpen = false;
+
     }
 
     @Test
@@ -82,44 +82,5 @@ public class MVPTest {
 
         userMessage.shouldHave(text("Your user profile is stored. In the next set of videos, please provide feedback by liking what you like, and skipping what you don’t!"));
 
-    }
-
-    public static String url = "localhost:8808";
-    public static SelenideElement player = $("#video");
-    public static SelenideElement userMessage = $("#user-message");
-    public static SelenideElement prompting = $("#prompting");
-    public static SelenideElement likeIcon = $("like-icon");
-    public static SelenideElement skipIcon = $("skip-icon");
-    public static SelenideElement artistTitle = $("#artist-title");
-
-    private static void pressUp() {
-        player.sendKeys(Keys.ARROW_UP);
-    }
-
-    private static void pressRight() {
-        player.sendKeys(Keys.ARROW_RIGHT);
-    }
-
-    private static void launchMVP(){
-        open(url);
-        prompting.shouldHave(text("Press Up to Like or Right to Skip"));
-    }
-
-    private static void likeSong(){
-        String savedArtistTitle = artistTitle.getText();
-        System.out.println(savedArtistTitle);
-        pressUp();
-        likeIcon.should(appear);
-        artistTitle.shouldNot(matchText(savedArtistTitle));
-        System.out.println(artistTitle.getText());
-    }
-
-    private static void skipSong(){
-        String savedArtistTitle = artistTitle.getText();
-        System.out.println(savedArtistTitle);
-        pressRight();
-        skipIcon.should(appear);
-        artistTitle.shouldNot(matchText(savedArtistTitle));
-        System.out.println(artistTitle.getText());
     }
 }
