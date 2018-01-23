@@ -28,13 +28,23 @@ public class MVPTest {
     @Test
     public void likeSongTest() {
         launchMVP();
+        String savedArtistTitle = artistTitle.getText();
+        System.out.println(savedArtistTitle);
+
         likeSong();
+        artistTitle.shouldNot(matchText(savedArtistTitle));
+        System.out.println(artistTitle.getText());
     }
 
     @Test
     public void skipSongTest() {
         launchMVP();
+        String savedArtistTitle = artistTitle.getText();
+        System.out.println(savedArtistTitle);
+
         skipSong();
+        artistTitle.shouldNot(matchText(savedArtistTitle));
+        System.out.println(artistTitle.getText());
     }
 
     @Test
@@ -78,6 +88,8 @@ public class MVPTest {
         //skip to 19th
         skipSong();
         //skip to 20th
+        skipSong();
+        //skip to Results set
         skipSong();
 
         userMessage.shouldHave(text("Your user profile is stored. In the next set of videos, please provide feedback by liking what you like, and skipping what you don’t!"));

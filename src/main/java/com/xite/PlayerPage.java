@@ -3,9 +3,7 @@ package com.xite;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.Condition.appear;
-import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -32,20 +30,16 @@ public class PlayerPage {
     }
 
     public static void likeSong(){
-        String savedArtistTitle = artistTitle.getText();
-        System.out.println(savedArtistTitle);
         pressUp();
         likeIcon.should(appear);
-        artistTitle.shouldNot(matchText(savedArtistTitle));
-        System.out.println(artistTitle.getText());
+        likeIcon.waitUntil(disappears, 3000);
+        artistTitle.shouldBe(visible);
     }
 
     public static void skipSong(){
-        String savedArtistTitle = artistTitle.getText();
-        System.out.println(savedArtistTitle);
         pressRight();
         skipIcon.should(appear);
-        artistTitle.shouldNot(matchText(savedArtistTitle));
-        System.out.println(artistTitle.getText());
+        skipIcon.waitUntil(disappears, 3000);
+        artistTitle.shouldBe(visible);
     }
 }
